@@ -100,12 +100,12 @@ class SqsFifoQueue extends SqsQueue
     {
         $group = strval($this->getMeta($payload, 'group', $this->group));
 
-    if($group == 'default') {
-        $group = \Str::uuid();
-    }
+        if(strval($group) == 'default') {
+            $group = strval(\Str::uuid());
+        }
         
         $message = [
-            'QueueUrl' => $this->getQueue($queue), 'MessageBody' => $payload, 'MessageGroupId' => strval($this->getMeta($payload, 'group', $this->group)),
+            'QueueUrl' => $this->getQueue($queue), 'MessageBody' => $payload, 'MessageGroupId' => $group,
         ];
 
         if (($deduplication = $this->getDeduplicationId($payload, $queue)) !== false) {
