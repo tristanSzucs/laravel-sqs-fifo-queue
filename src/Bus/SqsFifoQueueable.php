@@ -32,19 +32,6 @@ trait SqsFifoQueueable
         return $this;
     }
 
-    /**
-     * Set the desired deduplication method for the job.
-     *
-     * @param  string  $deduplicator
-     *
-     * @return $this
-     */
-    public function withDeduplicator($deduplicator)
-    {
-        $this->deduplicator = $deduplicator;
-
-        return $this;
-    }
 
     /**
      * Remove the deduplication method from the job.
